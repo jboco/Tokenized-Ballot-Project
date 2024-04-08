@@ -1,0 +1,38 @@
+
+<div class="px-4 py-5 my-5 text-center">
+
+  <h1 class="display-5 fw-bold">My Example Ballot Dapp</h1>
+  <div class="col-lg-6 mx-auto">
+    <div *ngIf ="!wallet">
+    <p class="lead mb-4">Choose your connection method.</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <button type="button" class="btn btn-primary btn-lg px-4 gap-3" (click)="createWallet()">Create Wallet</button>
+      <button disable type="button" class="btn btn-primary btn-lg px-4 gap-3" >Connect Wallet</button>
+      <button disable type="button" class="btn btn-primary btn-lg px-4 gap-3" >Import Wallet</button>
+    </div>
+    </div>
+    <div *ngIf = "wallet">
+      <p class="lead mb-4">This is your address {{wallet.address}}.</p> 
+      <p class="lead mb-4">This is the token address {{tokenContractAddress}}.</p> 
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <div class="card p-2 m-2">
+          <p>Ether balance</p>
+          <p> {{ethersBalance}}</p>
+        </div>
+        <div class="card p-2 m-2">
+          <p>Token balance</p>
+          <p> {{tokenBalance}}</p>
+        </div>
+        <div class="card p-2 m-2">
+          <p>Voting power</p>
+          <p> {{votingPower}}</p>
+        </div>       
+      </div>
+      <div>
+      <p> Vote </p>
+      <input #voteId type ="number" min ="0" [max]="votingPower" placeholder = "0">
+      <button (click)="vote(voteId.value)" type="button" class="btn btn-success btn-lg px-4 gap-3" >Vote</button>
+    </div>
+    </div>
+  </div>
+</div>
